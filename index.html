@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alter Space — Aksesoris Laptop & Jasa Teknologi Anak Muda</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#233686',
+                            dark: '#192763',
+                            light: '#354eb5',
+                            soft: '#eef2ff'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth animations & custom utilities */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-up {
+            animation: fadeInUp 0.7s ease-out forwards;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .slide-item {
+            transition: opacity 0.8s ease-in-out, transform 6s ease-out;
+        }
+        .slide-item.active-slide {
+            opacity: 1;
+            transform: scale(1.04);
+            z-index: 10;
+        }
+        .slide-item.inactive-slide {
+            opacity: 0;
+            transform: scale(1);
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-[#233686] selection:text-white">
+
+    <!-- ==================== HEADER / NAVBAR (#233686) ==================== -->
+    <header class="sticky top-0 z-50 bg-[#233686] text-white shadow-lg shadow-[#233686]/20 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo & Name -->
+                <a href="#beranda" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-xl overflow-hidden bg-white p-0.5 shadow-md group-hover:scale-105 transition-transform">
+                        <img 
+                            src="https://github.com/virtueterna28/alterspace/blob/main/Gemini_Generated_Image.jpeg?raw=true" 
+                            alt="Logo Alter Space" 
+                            class="w-full h-full object-cover rounded-lg"
+                            onerror="this.src='https://placehold.co/100x100/233686/ffffff?text=AS'"
+                        >
+                    </div>
+                    <div>
+                        <span class="font-display font-extrabold text-xl tracking-tight text-white block leading-none">Alter Space</span>
+                        <span class="text-[11px] text-blue-200 font-medium tracking-wider uppercase">Tech & Gear Hub</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                    <a href="#beranda" class="text-blue-100 hover:text-white transition-colors py-2">Beranda</a>
+                    <a href="#tentang" class="text-blue-100 hover:text-white transition-colors py-2">Tentang</a>
+                    <a href="#keunggulan" class="text-blue-100 hover:text-white transition-colors py-2">Keunggulan</a>
+                    <a href="#produk" class="text-blue-100 hover:text-white transition-colors py-2">Produk & Jasa</a>
+                    <a href="#pengelola" class="text-blue-100 hover:text-white transition-colors py-2">Pengelola</a>
+                </nav>
+
+                <!-- CTA Button & Mobile Menu Trigger -->
+                <div class="flex items-center gap-3">
+                    <a 
+                        href="https://wa.me/6285852764293?text=Halo%20Alter%20Space,%20saya%20ingin%20bertanya%20mengenai%20produk%20dan%20jasa%20teknologi." 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 bg-white text-[#233686] hover:bg-blue-50 font-semibold text-sm px-5 py-2.5 rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+                    >
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        <span>Hubungi Kami</span>
+                    </a>
+
+                    <!-- Mobile Hamburger Button -->
+                    <button id="mobile-menu-btn" aria-label="Buka Menu" class="md:hidden p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#192763] border-t border-white/10 px-4 pt-3 pb-5 space-y-2">
+            <a href="#beranda" class="mobile-link block px-4 py-2.5 rounded-xl text-blue-100 hover:bg-white/10 hover:text-white font-medium">Beranda</a>
+            <a href="#tentang" class="mobile-link block px-4 py-2.5 rounded-xl text-blue-100 hover:bg-white/10 hover:text-white font-medium">Tentang Alter Space</a>
+            <a href="#keunggulan" class="mobile-link block px-4 py-2.5 rounded-xl text-blue-100 hover:bg-white/10 hover:text-white font-medium">Keunggulan</a>
+            <a href="#produk" class="mobile-link block px-4 py-2.5 rounded-xl text-blue-100 hover:bg-white/10 hover:text-white font-medium">Produk & Jasa</a>
+            <a href="#pengelola" class="mobile-link block px-4 py-2.5 rounded-xl text-blue-100 hover:bg-white/10 hover:text-white font-medium">Pengelola</a>
+        </div>
+    </header>
+
+    <!-- ==================== HERO SECTION & IMAGE SLIDER ==================== -->
+    <section id="beranda" class="relative w-full h-[560px] sm:h-[620px] lg:h-[680px] overflow-hidden bg-slate-900">
+        <!-- Slider Images Container -->
+        <div id="hero-slider" class="absolute inset-0 w-full h-full">
+            <!-- Slide 1 -->
+            <div class="slide-item active-slide absolute inset-0 w-full h-full">
+                <img 
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVaBNqOm4hpKXVxSFf5WNfkczY36qNKBoQHyiJfR4OTQ&s=10" 
+                    alt="Alter Space Tech Showcase 1" 
+                    class="w-full h-full object-cover object-center"
+                    onerror="this.src='https://placehold.co/1600x900/233686/ffffff?text=Alter+Space+Tech'"
+                >
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide-item inactive-slide absolute inset-0 w-full h-full">
+                <img 
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH0LG7soVlP25JSws5tj9mEMB9h3Ef9oZ2z42GXgI_Aw&s=10" 
+                    alt="Alter Space Tech Showcase 2" 
+                    class="w-full h-full object-cover object-center"
+                    onerror="this.src='https://placehold.co/1600x900/192763/ffffff?text=Aksesoris+Laptop+Modern'"
+                >
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide-item inactive-slide absolute inset-0 w-full h-full">
+                <img 
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJiQzfl7Kx0wSUR8B_xDNqA_dvz_CB6Qa1Xx3UNTeUsA&s=10" 
+                    alt="Alter Space Tech Showcase 3" 
+                    class="w-full h-full object-cover object-center"
+                    onerror="this.src='https://placehold.co/1600x900/233686/ffffff?text=Solusi+Digital+Anak+Muda'"
+                >
+            </div>
+        </div>
+
+        <!-- Dark Gradient Overlay for Crisp Contrast -->
+        <div class="absolute inset-0 z-20 bg-gradient-to-r from-[#0f173d]/90 via-[#233686]/75 to-slate-900/60"></div>
+
+        <!-- Hero Foreground Content -->
+        <div class="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+            <div class="max-w-2xl text-white animate-fade-up">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-medium text-blue-100 mb-6">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Aksesoris Laptop & Jasa Teknologi Anak Muda
+                </div>
+                <h1 class="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl leading-tight tracking-tight mb-5">
+                    Upgrade Setup & Karya Digitalmu Bersama <span class="text-blue-300">Alter Space</span>
+                </h1>
+                <p class="text-base sm:text-lg text-blue-100/90 leading-relaxed mb-8 max-w-xl">
+                    Solusi satu pintu untuk aksesoris laptop berkualitas, konsultasi gadget, pengembangan website, desain grafis, hingga editing kreatif dengan harga ramah kantong anak muda.
+                </p>
+                <div class="flex flex-wrap items-center gap-4">
+                    <a 
+                        href="#produk" 
+                        class="inline-flex items-center justify-center gap-2 bg-white text-[#233686] hover:bg-blue-50 font-bold text-sm sm:text-base px-7 py-3.5 rounded-full shadow-xl hover:-translate-y-0.5 transition-all duration-200"
+                    >
+                        <span>Jelajahi Produk</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <a 
+                        href="https://wa.me/6285852764293?text=Halo%20Alter%20Space,%20saya%20tertarik%20dengan%20layanan%20dan%20produk%20Anda." 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center justify-center gap-2 bg-[#233686]/80 hover:bg-[#233686] text-white border border-white/30 backdrop-blur-md font-semibold text-sm sm:text-base px-7 py-3.5 rounded-full hover:-translate-y-0.5 transition-all duration-200"
+                    >
+                        <i data-lucide="phone-call" class="w-4 h-4"></i>
+                        <span>Hubungi Kami</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider Navigation Arrows -->
+        <button id="prev-slide" aria-label="Slide Sebelumnya" class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/15 hover:bg-white/30 backdrop-blur-md border border-white/25 text-white flex items-center justify-center transition-all">
+            <i data-lucide="chevron-left" class="w-6 h-6"></i>
+        </button>
+        <button id="next-slide" aria-label="Slide Berikutnya" class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/15 hover:bg-white/30 backdrop-blur-md border border-white/25 text-white flex items-center justify-center transition-all">
+            <i data-lucide="chevron-right" class="w-6 h-6"></i>
+        </button>
+
+        <!-- Slider Dot Indicators -->
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2.5">
+            <button class="slide-dot w-8 h-2.5 rounded-full bg-white transition-all duration-300" data-index="0" aria-label="Slide 1"></button>
+            <button class="slide-dot w-2.5 h-2.5 rounded-full bg-white/45 hover:bg-white/75 transition-all duration-300" data-index="1" aria-label="Slide 2"></button>
+            <button class="slide-dot w-2.5 h-2.5 rounded-full bg-white/45 hover:bg-white/75 transition-all duration-300" data-index="2" aria-label="Slide 3"></button>
+        </div>
+    </section>
+
+    <!-- ==================== BAGIAN 1: TENTANG ALTER SPACE ==================== -->
+    <section id="tentang" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center reveal">
+                <!-- Left Column: Text -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-[#233686] text-xs font-bold uppercase tracking-wider">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                        Tentang Kami
+                    </div>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
+                        Tentang <span class="text-[#233686]">Alter Space</span>
+                    </h2>
+                    <p class="text-lg sm:text-xl text-slate-600 leading-relaxed font-normal">
+                        Alter Space adalah bisnis perseorangan yang bergerak di bidang teknologi dalam memasok berbagai kebutuhan masyarakat terhadap derasnya perkembangan dunia teknologi.
+                    </p>
+                    <p class="text-slate-500 leading-relaxed">
+                        Hadir dengan semangat anak muda yang dinamis, kreatif, dan adaptif, kami berkomitmen memberikan pengalaman belanja aksesoris laptop dan layanan jasa digital yang cepat, transparan, dan terpercaya.
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-2xl bg-[#233686]/10 text-[#233686] flex items-center justify-center">
+                                <i data-lucide="laptop" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-slate-900 text-sm">Aksesoris & Konsultasi</p>
+                                <p class="text-xs text-slate-500">Perangkat keras pilihan</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-2xl bg-[#233686]/10 text-[#233686] flex items-center justify-center">
+                                <i data-lucide="code-2" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-slate-900 text-sm">Jasa Kreatif & Web</p>
+                                <p class="text-xs text-slate-500">Solusi digital modern</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Image -->
+                <div class="lg:col-span-5">
+                    <div class="relative group">
+                        <div class="absolute -inset-3 bg-gradient-to-tr from-[#233686]/25 to-blue-400/20 rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-100">
+                            <img 
+                                src="https://github.com/virtueterna28/alterspace/blob/main/Gemini_Generated_Image.jpeg?raw=true" 
+                                alt="Identitas Alter Space" 
+                                class="w-full h-auto aspect-square object-cover group-hover:scale-105 transition-transform duration-500"
+                                onerror="this.src='https://placehold.co/600x600/233686/ffffff?text=Alter+Space'"
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== BAGIAN 2: KEUNGGULAN BELANJA DI SINI ==================== -->
+    <section id="keunggulan" class="py-20 bg-slate-50 border-y border-slate-200/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+                <span class="inline-block px-3.5 py-1.5 rounded-full bg-[#233686]/10 text-[#233686] text-xs font-bold uppercase tracking-wider mb-3">
+                    Kenapa Memilih Kami?
+                </span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight mb-4">
+                    Keunggulan Belanja di Sini
+                </h2>
+                <p class="text-slate-600">
+                    Nikmati kemudahan transaksi, harga bersahabat, serta jaminan kualitas terbaik di setiap produk maupun layanan jasa Alter Space.
+                </p>
+            </div>
+
+            <!-- 6 Keunggulan Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+                <!-- 1. Produk Murah -->
+                <div class="bg-white p-7 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-14 h-14 rounded-2xl bg-[#233686] text-white flex items-center justify-center mb-5 shadow-md shadow-[#233686]/20 group-hover:scale-110 transition-transform">
+                        <i data-lucide="tag" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Produk Murah</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        Harga sangat terjangkau dan ramah di kantong pelajar, mahasiswa, maupun pekerja muda tanpa mengorbankan kualitas.
+                    </p>
+                </div>
+
+                <!-- 2. Kualitas Terjamin -->
+                <div class="bg-white p-7 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-14 h-14 rounded-2xl bg-[#233686] text-white flex items-center justify-center mb-5 shadow-md shadow-[#233686]/20 group-hover:scale-110 transition-transform">
+                        <i data-lucide="award" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Kualitas Terjamin</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        Setiap produk aksesoris dikurasi ketat dan setiap pengerjaan jasa digital dikerjakan secara teliti dan profesional.
+                    </p>
+                </div>
+
+                <!-- 3. Garansi -->
+                <div class="bg-white p-7 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-14 h-14 rounded-2xl bg-[#233686] text-white flex items-center justify-center mb-5 shadow-md shadow-[#233686]/20 group-hover:scale-110 transition-transform">
+                        <i data-lucide="shield-check" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Garansi</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        Belanja bebas rasa khawatir dengan perlindungan garansi produk dan revisi layanan sesuai kesepakatan pesanan.
+                    </p>
+                </div>
+
+                <!-- 4. Diskon Besar-Besaran -->
+                <div class="bg-white p-7 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-14 h-14 rounded-2xl bg-[#233686] text-white flex items-center justify-center mb-5 shadow-md shadow-[#233686]/20 group-hover:scale-110 transition-transform">
+                        <i data-lucide="percent" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Diskon Besar-Besaran</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        Dapatkan potongan harga spesial hingga lebih dari 50% untuk berbagai layanan teknologi dan aksesoris pilihan.
+                    </p>
+                </div>
+
+                <!-- 5. Call Center 24 Jam -->
+                <div class="bg-white p-7 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-14 h-14 rounded-2xl bg-[#233686] text-white flex items-center justify-center mb-5 shadow-md shadow-[#233686]/20 group-hover:scale-110 transition-transform">
+                        <i data-lucide="headset" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Call Center 24 Jam</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        Tim responsif siap membantu konsultasi, pertanyaan stok, dan pemesanan kapan saja selama 24 jam penuh.
+                    </p>
+                </div>
+
+                <!-- 6. Pembayaran QRIS -->
+                <div class="bg-white p-7 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-14 h-14 rounded-2xl bg-[#233686] text-white flex items-center justify-center mb-5 shadow-md shadow-[#233686]/20 group-hover:scale-110 transition-transform">
+                        <i data-lucide="qr-code" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Pembayaran QRIS</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        Transaksi instan, praktis, dan aman mendukung pembayaran QRIS dari seluruh e-wallet dan mobile banking.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== BAGIAN 3: PRODUK & JASA ALTER SPACE ==================== -->
+    <section id="produk" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+                <span class="inline-block px-3.5 py-1.5 rounded-full bg-blue-50 text-[#233686] text-xs font-bold uppercase tracking-wider mb-3">
+                    Katalog Spesial Promo
+                </span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight mb-4">
+                    Produk & Jasa <span class="text-[#233686]">Alter Space</span>
+                </h2>
+                <p class="text-slate-600">
+                    Pilih layanan teknologi dan kreatif terbaik sesuai kebutuhanmu. Klik tombol pesan pada kartu untuk mengatur rincian dan langsung terhubung ke WhatsApp.
+                </p>
+            </div>
+
+            <!-- Katalog Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
+
+                <!-- Item A: Web Development -->
+                <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden flex flex-col">
+                    <div class="relative h-56 bg-slate-100 overflow-hidden group">
+                        <span class="absolute top-3.5 left-3.5 z-10 bg-rose-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                            HEMAT S/D 45%
+                        </span>
+                        <img 
+                            src="https://oasisme.com/wp-content/uploads/2026/oasisme-hero-jasa-web-dev.webp" 
+                            alt="Jasa Web Development" 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            onerror="this.src='https://placehold.co/600x400/233686/ffffff?text=Web+Development'"
+                        >
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-semibold text-[#233686] uppercase tracking-wider mb-1">Jasa Digital</div>
+                            <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Web Development</h3>
+                            <p class="text-slate-500 text-sm mb-4">
+                                Pembuatan website modern, responsif, cepat, dan SEO-friendly untuk portofolio, UMKM, maupun organisasi.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100">
+                            <div class="text-xs text-slate-400 line-through font-medium">Rp 900.000</div>
+                            <div class="font-display font-extrabold text-xl text-[#233686] mb-4">
+                                Rp 490.900 - Rp 690.800
+                            </div>
+                            <button 
+                                onclick="openOrderModal('Web Development', 'Rp 490.900 - Rp 690.800', 'Rp 900.000', ['Landing Page / Profil Bisnis', 'Website Toko Online / Katalog', 'Website Custom / Tugas Kuliah'])"
+                                class="w-full inline-flex items-center justify-center gap-2 bg-[#233686] hover:bg-[#192763] text-white font-semibold py-3 px-4 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer"
+                            >
+                                <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                                <span>Pesan Sekarang</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item B: Konsultasi Spesifikasi Laptop -->
+                <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden flex flex-col">
+                    <div class="relative h-56 bg-slate-100 overflow-hidden group">
+                        <span class="absolute top-3.5 left-3.5 z-10 bg-rose-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                            DISKON 44%
+                        </span>
+                        <img 
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx6qhu7PFMeXaUdS2TalfkB2Idb0jCdSbRtgmzFk6ZuA&s" 
+                            alt="Konsultasi Spesifikasi Laptop" 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            onerror="this.src='https://placehold.co/600x400/233686/ffffff?text=Konsultasi+Laptop'"
+                        >
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-semibold text-[#233686] uppercase tracking-wider mb-1">Konsultasi Gadget</div>
+                            <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Konsultasi Spesifikasi Laptop</h3>
+                            <p class="text-slate-500 text-sm mb-4">
+                                Bingung pilih laptop kuliah, gaming, atau editing sesuai budget? Kami bantu pilihkan rekomendasi terbaik & anti zonk!
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100">
+                            <div class="text-xs text-slate-400 line-through font-medium">Rp 35.000</div>
+                            <div class="font-display font-extrabold text-xl text-[#233686] mb-4">
+                                Rp 19.500
+                            </div>
+                            <button 
+                                onclick="openOrderModal('Konsultasi Spesifikasi Laptop', 'Rp 19.500', 'Rp 35.000', ['Laptop Kuliah & Kerja Ringan', 'Laptop Gaming & Rendering', 'Upgrade RAM / SSD & Aksesoris'])"
+                                class="w-full inline-flex items-center justify-center gap-2 bg-[#233686] hover:bg-[#192763] text-white font-semibold py-3 px-4 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer"
+                            >
+                                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                                <span>Beli & Konsultasi</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item C: Desain -->
+                <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden flex flex-col">
+                    <div class="relative h-56 bg-slate-100 overflow-hidden group">
+                        <span class="absolute top-3.5 left-3.5 z-10 bg-rose-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                            DISKON 50%
+                        </span>
+                        <img 
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPu7-KCkL5G47uPgBVyVfUqdN8_kE35hmhSlV6LGGJ3w&s=10" 
+                            alt="Jasa Desain Grafis" 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            onerror="this.src='https://placehold.co/600x400/233686/ffffff?text=Jasa+Desain'"
+                        >
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-semibold text-[#233686] uppercase tracking-wider mb-1">Kreatif Visual</div>
+                            <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Desain</h3>
+                            <p class="text-slate-500 text-sm mb-4">
+                                Jasa desain grafis estetik untuk poster acara, feeds Instagram, logo brand, banner, hingga kebutuhan presentasi.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100">
+                            <div class="text-xs text-slate-400 line-through font-medium">Rp 80.000</div>
+                            <div class="font-display font-extrabold text-xl text-[#233686] mb-4">
+                                Rp 39.900 - Rp 47.000
+                            </div>
+                            <button 
+                                onclick="openOrderModal('Jasa Desain Grafis', 'Rp 39.900 - Rp 47.000', 'Rp 80.000', ['Poster / Flyer / Banner', 'Konten Feeds / Story Sosial Media', 'Logo / Identitas Brand'])"
+                                class="w-full inline-flex items-center justify-center gap-2 bg-[#233686] hover:bg-[#192763] text-white font-semibold py-3 px-4 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer"
+                            >
+                                <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                                <span>Pesan Sekarang</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item D: Editing Video -->
+                <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden flex flex-col">
+                    <div class="relative h-56 bg-slate-100 overflow-hidden group">
+                        <span class="absolute top-3.5 left-3.5 z-10 bg-rose-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                            PROMO SPESIAL
+                        </span>
+                        <img 
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6C6AnZwXdDWEEWDjPsJNz6iE5F1t3uEtMUlR9hJ8ZBg&s=10" 
+                            alt="Jasa Editing Video" 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            onerror="this.src='https://placehold.co/600x400/233686/ffffff?text=Editing+Video'"
+                        >
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-semibold text-[#233686] uppercase tracking-wider mb-1">Produksi Video</div>
+                            <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Editing Video</h3>
+                            <p class="text-slate-500 text-sm mb-3">
+                                Editing video dinamis dengan transisi halus, color grading, dan efek suara yang memikat audiens.
+                            </p>
+                            <!-- Keterangan Jenis Editing -->
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="text-[11px] font-medium bg-blue-50 text-[#233686] px-2.5 py-1 rounded-md">Jenis: Reels / TikTok</span>
+                                <span class="text-[11px] font-medium bg-blue-50 text-[#233686] px-2.5 py-1 rounded-md">YouTube</span>
+                                <span class="text-[11px] font-medium bg-blue-50 text-[#233686] px-2.5 py-1 rounded-md">Cinematic / Event</span>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100">
+                            <div class="text-xs text-slate-400 line-through font-medium">Rp 120.000 - Rp 600.000</div>
+                            <div class="font-display font-extrabold text-xl text-[#233686] mb-4">
+                                Rp 48.990 - Rp 490.000
+                            </div>
+                            <button 
+                                onclick="openOrderModal('Editing Video', 'Rp 48.990 - Rp 490.000', 'Rp 120.000 - Rp 600.000', ['Reels / TikTok / Shorts', 'Konten YouTube / Vlog', 'Video Cinematic / Dokumentasi Event'])"
+                                class="w-full inline-flex items-center justify-center gap-2 bg-[#233686] hover:bg-[#192763] text-white font-semibold py-3 px-4 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer"
+                            >
+                                <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                                <span>Pesan Sekarang</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item E: Commission Anime -->
+                <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden flex flex-col">
+                    <div class="relative h-56 bg-slate-100 overflow-hidden group">
+                        <span class="absolute top-3.5 left-3.5 z-10 bg-rose-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                            BEST SELLER
+                        </span>
+                        <img 
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-cb_mQo_dFVZrHF6RlzGGqT7k4kbMW7s40GsNReLW3diAQirA4UdLJe7U&s=10" 
+                            alt="Commission Anime" 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            onerror="this.src='https://placehold.co/600x400/233686/ffffff?text=Commission+Anime'"
+                        >
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-semibold text-[#233686] uppercase tracking-wider mb-1">Ilustrasi Digital</div>
+                            <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Commission Anime</h3>
+                            <p class="text-slate-500 text-sm mb-4">
+                                Ilustrasi karakter gaya anime detail dan ekspresif untuk avatar, hadiah, OC (Original Character), maupun aset konten.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100">
+                            <div class="text-xs text-slate-400 line-through font-medium">Rp 75.000</div>
+                            <div class="font-display font-extrabold text-xl text-[#233686] mb-4">
+                                Rp 69.090 - Rp 199.070
+                            </div>
+                            <button 
+                                onclick="openOrderModal('Commission Anime', 'Rp 69.090 - Rp 199.070', 'Rp 75.000', ['Headshot / Bust-Up', 'Half-Body Character', 'Full-Body + Background'])"
+                                class="w-full inline-flex items-center justify-center gap-2 bg-[#233686] hover:bg-[#192763] text-white font-semibold py-3 px-4 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer"
+                            >
+                                <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                                <span>Pesan Sekarang</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Highlight Card: Custom Aksesoris & Order Langsung -->
+                <div class="bg-gradient-to-br from-[#233686] to-[#162259] text-white rounded-3xl p-7 shadow-xl flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 w-44 h-44 bg-white/10 rounded-full blur-2xl"></div>
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-sm flex items-center justify-center mb-5">
+                            <i data-lucide="laptop-2" class="w-6 h-6 text-blue-200"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-2xl mb-3">Butuh Aksesoris Laptop atau Request Khusus?</h3>
+                        <p class="text-blue-100/90 text-sm leading-relaxed mb-6">
+                            Tanyakan ketersediaan stok aksesoris laptop seperti mouse wireless, keyboard mechanical, laptop stand, cooling pad, hingga paket bundling hemat langsung melalui admin kami.
+                        </p>
+                    </div>
+                    <div>
+                        <a 
+                            href="https://wa.me/6285852764293?text=Halo%20Alter%20Space,%20saya%20ingin%20tanya%20katalog%20aksesoris%20laptop%20dan%20request%20layanan." 
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="w-full inline-flex items-center justify-center gap-2 bg-white text-[#233686] hover:bg-blue-50 font-bold py-3.5 px-5 rounded-xl shadow-lg transition-all"
+                        >
+                            <i data-lucide="message-square" class="w-4 h-4"></i>
+                            <span>Tanya Admin Sekarang</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CTA Besar WhatsApp Resmi di Bawah Katalog -->
+            <div class="mt-14 bg-gradient-to-r from-[#233686] via-[#2d44a3] to-[#233686] rounded-3xl p-8 sm:p-10 text-white shadow-2xl shadow-[#233686]/25 flex flex-col lg:flex-row items-center justify-between gap-6 reveal">
+                <div class="text-center lg:text-left">
+                    <span class="inline-block px-3 py-1 rounded-full bg-white/15 text-blue-100 text-xs font-semibold uppercase tracking-wider mb-2">
+                        Pemesanan Cepat & Responsif
+                    </span>
+                    <h3 class="font-display font-extrabold text-2xl sm:text-3xl mb-2">
+                        Siap Memesan Produk & Jasa Alter Space?
+                    </h3>
+                    <p class="text-blue-100 text-sm sm:text-base">
+                        Klik tombol di samping untuk terhubung langsung ke WhatsApp resmi kami di nomor <span class="font-bold text-white underline decoration-blue-300">085852764293</span>.
+                    </p>
+                </div>
+                <a 
+                    href="https://wa.me/6285852764293?text=Halo%20Alter%20Space,%20saya%20ingin%20memesan%20produk/jasa%20dari%20website." 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="shrink-0 inline-flex items-center gap-3 bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-base sm:text-lg px-8 py-4 rounded-2xl shadow-xl hover:-translate-y-0.5 transition-all duration-200"
+                >
+                    <i data-lucide="phone" class="w-5 h-5"></i>
+                    <span>Pesan via WhatsApp (085852764293)</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== BAGIAN 4: PENGELOLA ==================== -->
+    <section id="pengelola" class="py-20 bg-slate-50 border-t border-slate-200/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-xl mx-auto mb-12 reveal">
+                <span class="inline-block px-3.5 py-1.5 rounded-full bg-[#233686]/10 text-[#233686] text-xs font-bold uppercase tracking-wider mb-3">
+                    Profil Pengelola
+                </span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
+                    Di Balik <span class="text-[#233686]">Alter Space</span>
+                </h2>
+            </div>
+
+            <!-- Profile Card -->
+            <div class="max-w-md mx-auto bg-white rounded-3xl p-8 border border-slate-100 shadow-xl text-center reveal hover:shadow-2xl transition-shadow duration-300">
+                <div class="relative w-36 h-36 mx-auto mb-6">
+                    <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-[#233686] to-blue-400 animate-spin-slow opacity-25 blur-sm"></div>
+                    <img 
+                        src="https://github.com/virtueterna28/web/blob/main/mentahan%20aset%20web/Members/foto%20teman/WhatsApp%20Image%202025-12-23%20at%2009.47.38%20-%20Abhipraya%20Damas.jpeg?raw=true" 
+                        alt="Abhipraya damas Okta Ardana" 
+                        class="relative w-36 h-36 rounded-full object-cover object-top border-4 border-white shadow-lg"
+                        onerror="this.src='https://placehold.co/300x300/233686/ffffff?text=Abhipraya+Damas'"
+                    >
+                    <span class="absolute bottom-1 right-1 w-8 h-8 rounded-full bg-[#233686] text-white flex items-center justify-center border-2 border-white shadow">
+                        <i data-lucide="badge-check" class="w-4 h-4"></i>
+                    </span>
+                </div>
+
+                <h3 class="font-display font-extrabold text-2xl text-slate-900 mb-1">
+                    Abhipraya damas Okta Ardana
+                </h3>
+                <p class="text-[#233686] font-semibold text-sm mb-4">
+                    Founder & Pengelola Alter Space
+                </p>
+                <p class="text-slate-500 text-sm leading-relaxed mb-6">
+                    Mengelola dan memastikan setiap kebutuhan aksesoris laptop serta layanan kreatif digital pelanggan terpenuhi dengan standar kualitas terbaik.
+                </p>
+
+                <div class="flex items-center justify-center gap-3">
+                    <a 
+                        href="https://wa.me/6285852764293" 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#233686] hover:bg-[#192763] text-white text-sm font-semibold transition-colors"
+                    >
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        <span>Kontak Pengelola</span>
+                    </a>
+                    <a 
+                        href="https://www.instagram.com/rayfin_cruise/" 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-sm font-semibold transition-colors"
+                    >
+                        <img 
+                            src="https://i.ibb.co.com/SXfnj442/ig.png" 
+                            alt="Instagram" 
+                            class="w-4 h-4 object-contain"
+                            onerror="this.style.display='none'"
+                        >
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== BAGIAN 5: MEDIA SOSIAL & FOOTER (#233686) ==================== -->
+    <footer class="bg-[#233686] text-white pt-16 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/15">
+                <!-- Brand Column -->
+                <div class="md:col-span-5 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-xl overflow-hidden bg-white p-0.5">
+                            <img 
+                                src="https://github.com/virtueterna28/alterspace/blob/main/Gemini_Generated_Image.jpeg?raw=true" 
+                                alt="Logo Alter Space" 
+                                class="w-full h-full object-cover rounded-lg"
+                                onerror="this.src='https://placehold.co/100x100/233686/ffffff?text=AS'"
+                            >
+                        </div>
+                        <span class="font-display font-extrabold text-2xl tracking-tight">Alter Space</span>
+                    </div>
+                    <p class="text-blue-100/85 text-sm leading-relaxed max-w-sm">
+                        Bisnis perseorangan di bidang teknologi yang menyediakan aksesoris laptop pilihan dan jasa digital kreatif untuk generasi muda.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="md:col-span-3 space-y-3">
+                    <h4 class="font-display font-bold text-base uppercase tracking-wider text-blue-200">Navigasi</h4>
+                    <ul class="space-y-2 text-sm text-blue-100">
+                        <li><a href="#beranda" class="hover:text-white transition-colors">Beranda</a></li>
+                        <li><a href="#tentang" class="hover:text-white transition-colors">Tentang Alter Space</a></li>
+                        <li><a href="#keunggulan" class="hover:text-white transition-colors">Keunggulan Belanja</a></li>
+                        <li><a href="#produk" class="hover:text-white transition-colors">Produk & Jasa</a></li>
+                        <li><a href="#pengelola" class="hover:text-white transition-colors">Pengelola</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Media & Contact -->
+                <div class="md:col-span-4 space-y-4">
+                    <h4 class="font-display font-bold text-base uppercase tracking-wider text-blue-200">Media Sosial & Kontak</h4>
+                    <p class="text-sm text-blue-100/85">
+                        Ikuti update promo terbaru, karya desain, dan informasi produk melalui media sosial resmi kami:
+                    </p>
+                    
+                    <!-- Instagram Custom Logo Link -->
+                    <div class="pt-1">
+                        <a 
+                            href="https://www.instagram.com/rayfin_cruise/" 
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 border border-white/20 px-4 py-3 rounded-2xl transition-all group"
+                        >
+                            <div class="w-8 h-8 rounded-lg bg-white p-1 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                <img 
+                                    src="https://i.ibb.co.com/SXfnj442/ig.png" 
+                                    alt="Logo Instagram Alter Space" 
+                                    class="w-full h-full object-contain"
+                                    onerror="this.src='https://placehold.co/64x64/ffffff/233686?text=IG'"
+                                >
+                            </div>
+                            <div>
+                                <span class="block text-xs text-blue-200">Instagram Official</span>
+                                <span class="font-bold text-sm text-white">@rayfin_cruise</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="pt-2 text-sm text-blue-100 flex items-center gap-2">
+                        <i data-lucide="phone" class="w-4 h-4 text-emerald-300"></i>
+                        <span>WhatsApp: <a href="https://wa.me/6285852764293" target="_blank" rel="noopener noreferrer" class="font-semibold text-white hover:underline">085852764293</a></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-blue-200/80">
+                <p>&copy; <span id="current-year"></span> Alter Space — Dikelola oleh Abhipraya damas Okta Ardana. All rights reserved.</p>
+                <p>Pembayaran mendukung QRIS • Layanan 24 Jam</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== FLOATING WHATSAPP BUTTON ==================== -->
+    <a 
+        href="https://wa.me/6285852764293?text=Halo%20Alter%20Space,%20saya%20ingin%20bertanya%20atau%20memesan%20layanan." 
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat WhatsApp Alter Space"
+        class="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-5 py-3.5 rounded-full shadow-2xl shadow-emerald-900/30 hover:scale-105 transition-all duration-200 group"
+    >
+        <i data-lucide="message-circle" class="w-6 h-6 fill-white/20"></i>
+        <span class="hidden sm:inline text-sm">Chat WhatsApp</span>
+    </a>
+
+    <!-- ==================== INTERACTIVE ORDER MODAL ==================== -->
+    <div id="order-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl border border-slate-100 transform transition-all">
+            <div class="flex items-start justify-between mb-4">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#233686] bg-blue-50 px-2.5 py-1 rounded-full">Form Pemesanan Cepat</span>
+                    <h3 id="modal-service-title" class="font-display font-extrabold text-2xl text-slate-900 mt-2">Nama Layanan</h3>
+                </div>
+                <button onclick="closeOrderModal()" aria-label="Tutup Modal" class="p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors cursor-pointer">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="bg-slate-50 rounded-2xl p-4 mb-5 border border-slate-200/70">
+                <div class="flex items-baseline justify-between">
+                    <span class="text-xs text-slate-500">Harga Promo:</span>
+                    <div class="text-right">
+                        <span id="modal-old-price" class="text-xs text-slate-400 line-through block">Rp 0</span>
+                        <span id="modal-promo-price" class="font-display font-extrabold text-lg text-[#233686]">Rp 0</span>
+                    </div>
+                </div>
+            </div>
+
+            <form id="wa-order-form" class="space-y-4">
+                <div>
+                    <label for="customer-name" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Nama Anda</label>
+                    <input type="text" id="customer-name" name="customer-name" required autocomplete="name" placeholder="Masukkan nama lengkap / panggilan" class="block w-full box-border px-4 py-3 rounded-xl border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:border-[#233686] focus:ring-2 focus:ring-[#233686]/20 focus:outline-none text-sm transition-colors">
+                </div>
+
+                <div>
+                    <label for="service-variant" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Pilih Jenis / Paket</label>
+                    <select id="service-variant" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-[#233686] focus:ring-2 focus:ring-[#233686]/20 outline-none text-sm bg-white">
+                        <!-- Options populated via JS -->
+                    </select>
+                </div>
+
+                <div>
+                    <label for="customer-notes" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Catatan / Kebutuhan Tambahan</label>
+                    <textarea id="customer-notes" name="customer-notes" rows="4" placeholder="Contoh: Budget laptop 7 juta, atau detail desain/website yang diinginkan..." class="block w-full box-border min-h-28 resize-y px-4 py-3 rounded-xl border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:border-[#233686] focus:ring-2 focus:ring-[#233686]/20 focus:outline-none text-sm transition-colors"></textarea>
+                </div>
+
+                <div class="pt-2 flex gap-3">
+                    <button type="button" onclick="closeOrderModal()" class="w-1/3 py-3 px-4 rounded-xl border border-slate-300 text-slate-700 font-semibold text-sm hover:bg-slate-50 transition-colors cursor-pointer">
+                        Batal
+                    </button>
+                    <button type="submit" class="w-2/3 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-lg flex items-center justify-center gap-2 transition-colors cursor-pointer">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                        <span>Lanjut ke WhatsApp</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Set Current Year in Footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Hero Image Slider Logic
+        const slides = document.querySelectorAll('.slide-item');
+        const dots = document.querySelectorAll('.slide-dot');
+        const prevBtn = document.getElementById('prev-slide');
+        const nextBtn = document.getElementById('next-slide');
+        let currentSlide = 0;
+        let slideInterval;
+
+        function showSlide(index) {
+            if (index >= slides.length) currentSlide = 0;
+            else if (index < 0) currentSlide = slides.length - 1;
+            else currentSlide = index;
+
+            slides.forEach((slide, i) => {
+                if (i === currentSlide) {
+                    slide.classList.remove('inactive-slide');
+                    slide.classList.add('active-slide');
+                } else {
+                    slide.classList.remove('active-slide');
+                    slide.classList.add('inactive-slide');
+                }
+            });
+
+            dots.forEach((dot, i) => {
+                if (i === currentSlide) {
+                    dot.classList.remove('w-2.5', 'bg-white/45');
+                    dot.classList.add('w-8', 'bg-white');
+                } else {
+                    dot.classList.remove('w-8', 'bg-white');
+                    dot.classList.add('w-2.5', 'bg-white/45');
+                }
+            });
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function startAutoSlide() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(slideInterval);
+            startAutoSlide();
+        }
+
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetAutoSlide();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetAutoSlide();
+        });
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const idx = parseInt(dot.getAttribute('data-index'), 10);
+                showSlide(idx);
+                resetAutoSlide();
+            });
+        });
+
+        startAutoSlide();
+
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.12 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Interactive Order Modal & WhatsApp Redirect
+        const orderModal = document.getElementById('order-modal');
+        const modalTitle = document.getElementById('modal-service-title');
+        const modalPromoPrice = document.getElementById('modal-promo-price');
+        const modalOldPrice = document.getElementById('modal-old-price');
+        const variantSelect = document.getElementById('service-variant');
+        const orderForm = document.getElementById('wa-order-form');
+
+        let selectedService = '';
+        let selectedPrice = '';
+
+        function openOrderModal(serviceName, promoPrice, oldPrice, variants) {
+            selectedService = serviceName;
+            selectedPrice = promoPrice;
+
+            modalTitle.textContent = serviceName;
+            modalPromoPrice.textContent = promoPrice;
+            modalOldPrice.textContent = oldPrice;
+
+            variantSelect.innerHTML = '';
+            variants.forEach(variant => {
+                const option = document.createElement('option');
+                option.value = variant;
+                option.textContent = variant;
+                variantSelect.appendChild(option);
+            });
+
+            orderModal.classList.remove('hidden');
+            orderModal.classList.add('flex');
+        }
+
+        function closeOrderModal() {
+            orderModal.classList.add('hidden');
+            orderModal.classList.remove('flex');
+        }
+
+        // Close modal when clicking outside dialog
+        orderModal.addEventListener('click', (e) => {
+            if (e.target === orderModal) {
+                closeOrderModal();
+            }
+        });
+
+        // Submit Order to WhatsApp (085852764293)
+        orderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const customerName = document.getElementById('customer-name').value.trim();
+            const chosenVariant = variantSelect.value;
+            const notes = document.getElementById('customer-notes').value.trim() || '-';
+
+            const message = `Halo *Alter Space*! Saya ingin memesan layanan berikut:\n\n` +
+                            `• *Nama:* ${customerName}\n` +
+                            `• *Produk/Jasa:* ${selectedService}\n` +
+                            `• *Jenis/Paket:* ${chosenVariant}\n` +
+                            `• *Estimasi Harga:* ${selectedPrice}\n` +
+                            `• *Catatan:* ${notes}\n\n` +
+                            `Mohon info langkah selanjutnya ya. Terima kasih!`;
+
+            const waUrl = `https://wa.me/6285852764293?text=${encodeURIComponent(message)}`;
+            window.open(waUrl, '_blank', 'noopener,noreferrer');
+            closeOrderModal();
+        });
+    </script>
+</body>
+</html>
